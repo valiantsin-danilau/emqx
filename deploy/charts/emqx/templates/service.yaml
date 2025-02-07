@@ -23,12 +23,9 @@ spec:
   {{- if .Values.service.clusterIP }}
   {{- if or (eq .Values.service.type "LoadBalancer") (eq .Values.service.type "NodePort") }}
   externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy | default "Cluster" }}
-  {{- if or (eq .Values.service.type "LoadBalancer") (eq .Values.service.type "NodePort") }}
-  {{- if not (empty .Values.service.nodePorts.dashboard) }}
-  healthCheckNodePort: {{ .Values.service.nodePorts.dashboard }}
   {{- end }}
   {{- end }}
-  {{- end }}
+  {{- if .Values.service.clusterIP }}
   {{- if eq .Values.service.type "LoadBalancer" }}
   {{- if .Values.service.loadBalancerClass }}
   loadBalancerClass: {{ .Values.service.loadBalancerClass }}
@@ -41,6 +38,7 @@ spec:
   {{- end }}
   {{- if .Values.service.externalIPs }}
   externalIPs: {{- toYaml .Values.service.externalIPs | nindent 4 }}
+  {{- end }}
   {{- end }}
   {{- end }}
   ports:
