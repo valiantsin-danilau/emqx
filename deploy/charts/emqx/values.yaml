@@ -135,7 +135,6 @@ emqxConfig:
 emqxLicenseSecretName:
 
 service:
-  sessionAffinity: None
   ## Service type
   ##
   type: ClusterIP
