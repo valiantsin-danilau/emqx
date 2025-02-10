@@ -20,10 +20,8 @@ spec:
   {{- if or (eq .Values.service.type "LoadBalancer") (eq .Values.service.type "NodePort") }}
   externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy | default "Cluster" }}
   {{- if or (eq .Values.service.type "LoadBalancer") (eq .Values.service.type "NodePort") }}
-  {{- if not (empty .Values.service.nodePorts.dashboard) }}
   healthCheckNodePort: {{ .Values.service.nodePorts.dashboard }}
-  {{- end }}
-  {{- end }}
+  {{- end}}
   {{- end }}
   {{- if eq .Values.service.type "LoadBalancer" }}
   {{- if .Values.service.loadBalancerClass }}
