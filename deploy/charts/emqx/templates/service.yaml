@@ -20,9 +20,6 @@ spec:
   {{- if .Values.service.sessionAffinity }}
   sessionAffinity: {{ .Values.service.sessionAffinity }}
   {{- end }}
-  {{- if .Values.service.healthCheckNodePort }}
-  healthCheckNodePort: {{ .Values.service.healthCheckNodePort }}
-  {{- end }}
   {{- if .Values.service.clusterIP }}
   {{- if or (eq .Values.service.type "LoadBalancer") (eq .Values.service.type "NodePort") }}
   externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy | default "Cluster" }}
